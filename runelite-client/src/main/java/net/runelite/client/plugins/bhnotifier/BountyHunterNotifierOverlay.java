@@ -36,14 +36,16 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 public class BountyHunterNotifierOverlay extends OverlayPanel
 {
 	private final BountyHunterNotifierPlugin plugin;
+	private final BountyHunterNotifierConfig config;
 
 	@Inject
-	private BountyHunterNotifierOverlay(BountyHunterNotifierPlugin plugin)
+	private BountyHunterNotifierOverlay(BountyHunterNotifierPlugin plugin, BountyHunterNotifierConfig config)
 	{
 		super(plugin);
 		setPosition(OverlayPosition.TOP_LEFT);
 		setPriority(OverlayPriority.HIGH);
 		this.plugin = plugin;
+		this.config = config;
 	}
 
 	private void addTextToOverlayPanel(String text)
@@ -58,6 +60,9 @@ public class BountyHunterNotifierOverlay extends OverlayPanel
 		panelComponent.getChildren().clear();
 
 		if (!plugin.isInWilderness())
+			return null;
+
+		if (config.hideOverlay())
 			return null;
 
 		panelComponent.getChildren().add(TitleComponent.builder().text("Target").build());
