@@ -41,10 +41,9 @@ public class BountyHunterNotifierOverlay extends OverlayPanel
 	private BountyHunterNotifierOverlay(BountyHunterNotifierPlugin plugin)
 	{
 		super(plugin);
-		this.plugin = plugin;
-
 		setPosition(OverlayPosition.TOP_LEFT);
-		setPriority(OverlayPriority.LOW);
+		setPriority(OverlayPriority.HIGH);
+		this.plugin = plugin;
 	}
 
 	private void addTextToOverlayPanel(String text)
